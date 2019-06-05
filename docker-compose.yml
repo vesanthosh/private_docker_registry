@@ -1,7 +1,6 @@
 version: '3.7'
 services:
   reversproxy:
-    container_name: nginx-container
     image: nginx:mainline-alpine
     ports:
       - "80:80"
@@ -18,7 +17,6 @@ services:
     networks:
       - nginx-network
   docker-reg:
-    container_name: docker-registry
     image: registry:latest
     expose:
       - 5000
