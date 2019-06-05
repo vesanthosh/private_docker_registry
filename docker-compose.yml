@@ -14,16 +14,29 @@ services:
     depends_on:
       - docker-reg
     networks:
-      - nginx-network
+      - common_network
+    deploy:
+      replicas: 1
+      update_config:
+        parallelism: 2
+        delay: 10s
+      restart_policy:
+        condition: on-failure
   docker-reg:
     image: registry:latest
-    expose:
-      - 5000
+    ports:
+      - "5000:5000"
     volumes:
-      - /docker-registry:/var/lib/registry:rw
+      - /docker_volumes/docker_registry:/var/lib/registry:rw
     networks:
-      - nginx-network
+      - common_network
+    deploy:
+      replicas: 1
+      update_config:
+        parallelism: 2
+        delay: 10s
+      restart_policy:
+        condition: on-failure
 
 networks:
-  nginx-network:
-    driver: bridge
+  common_network:
