@@ -1,6 +1,6 @@
 version: '3.1'
 services:
-  proxy:
+  reversproxy:
     container_name: nginx-container
     image: nginx:mainline-alpine
     ports:
@@ -13,12 +13,12 @@ services:
       - /docker-volumes/etc/letsencrypt/live/hub.cloudiolab.com/fullchain.pem:/etc/letsencrypt/live/hub.cloudiolab.com/fullchain.pem
       - /docker-volumes/etc/letsencrypt/live/hub.cloudiolab.com/privkey.pem:/etc/letsencrypt/live/hub.cloudiolab.com/privkey.pem
     depends_on:
-      - docker-hub
+      - docker-reg
     links:
-      - docker-hub
+      - docker-reg
     networks:
       - nginx-network
-  docker-hub:
+  docker-reg:
     container_name: docker-registry
     image: registry:latest
     expose:
