@@ -1,13 +1,13 @@
 // For production site
 docker run -it --rm \
--v /docker-volumes/etc/letsencrypt:/etc/letsencrypt \
--v /docker-volumes/var/lib/letsencrypt:/var/lib/letsencrypt \
--v /root/nginx-site:/data/letsencrypt \
--v /docker-volumes/var/log/letsencrypt:/var/log/letsencrypt \
+-v /docker_volumes/letsencrypt/etc/letsencrypt:/etc/letsencrypt \
+-v /root/website-content:/data/letsencrypt \
 certbot/certbot \
 certonly --webroot \
 --email vesanthosh@gmail.com --agree-tos --no-eff-email \
 --webroot-path=/data/letsencrypt \
 -d hub.cloudiolab.com
 
-0 23 * * * docker run --rm -it --name certbot -v "/docker-volumes/etc/letsencrypt:/etc/letsencrypt" -v "/docker-volumes/var/lib/letsencrypt:/var/lib/letsencrypt" -v "/docker-volumes/data/letsencrypt:/data/letsencrypt" -v "/docker-volumes/var/log/letsencrypt:/var/log/letsencrypt" certbot/certbot renew --webroot -w /data/letsencrypt --quiet && docker kill --signal=HUP production-nginx-container
+we can also run the above command to renew the certificate
+
+0 23 * * * docker run --rm -it --name certbot -v "/docker_volumes/letsencrypt/etc/letsencrypt:/etc/letsencrypt" -v "/root/website-content:/data/letsencrypt" certbot/certbot renew --webroot -w /data/letsencrypt --quiet && docker kill --signal=HUP production-nginx-container
