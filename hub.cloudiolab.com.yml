@@ -1,13 +1,12 @@
 version: '3.7'
 services:
   reversproxy:
-    image: nginx:mainline-alpine
+    image: hub.cloudiolab.com/admin/nginx_reverse_proxy:latest
     ports:
       - "80:80"
       - "443:443"
     volumes:
       - /root/nginx.conf:/etc/nginx/conf.d/default.conf
-      - /root/website-content:/usr/share/nginx/html
       - /docker_volumes/dhparam/hub.cloudiolab.com-dhparam-4096.pem:/etc/ssl/certs/hub.cloudiolab.com-dhparam-4096.pem
       - /docker_volumes/letsencrypt/etc/letsencrypt/live/hub.cloudiolab.com/fullchain.pem:/etc/letsencrypt/live/hub.cloudiolab.com/fullchain.pem
       - /docker_volumes/letsencrypt/etc/letsencrypt/live/hub.cloudiolab.com/privkey.pem:/etc/letsencrypt/live/hub.cloudiolab.com/privkey.pem
