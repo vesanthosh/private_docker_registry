@@ -32,7 +32,7 @@ services:
     ports:
       - "5000:5000"
     volumes:
-      - /docker_volumes/docker_registry:/var/lib/registry:rw
+      - /docker_volumes/docker_registry:/var/lib/registry
     networks:
       - common_network
     deploy:
