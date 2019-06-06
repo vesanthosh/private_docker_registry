@@ -16,9 +16,9 @@ services:
     networks:
       - common_network
     deploy:
-      replicas: 1
+      replicas: 2
       update_config:
-        parallelism: 2
+        parallelism: 1
         delay: 10s
       restart_policy:
         condition: on-failure
@@ -33,7 +33,7 @@ services:
     deploy:
       replicas: 1
       update_config:
-        parallelism: 2
+        parallelism: 1
         delay: 10s
       restart_policy:
         condition: on-failure
