@@ -10,6 +10,7 @@ services:
       - /docker_volumes/dhparam/hub.cloudiolab.com-dhparam-4096.pem:/etc/ssl/certs/hub.cloudiolab.com-dhparam-4096.pem
       - /docker_volumes/letsencrypt/etc/letsencrypt/live/hub.cloudiolab.com/fullchain.pem:/etc/letsencrypt/live/hub.cloudiolab.com/fullchain.pem
       - /docker_volumes/letsencrypt/etc/letsencrypt/live/hub.cloudiolab.com/privkey.pem:/etc/letsencrypt/live/hub.cloudiolab.com/privkey.pem
+      - /docker_volumes/htpasswd/auth/htpasswd:/etc/nginx/.htpasswd
     depends_on:
       - docker-reg
     networks:
